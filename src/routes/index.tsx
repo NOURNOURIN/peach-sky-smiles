@@ -110,7 +110,6 @@ const testimonials = [
 ];
 
 function Index() {
-  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-background">
