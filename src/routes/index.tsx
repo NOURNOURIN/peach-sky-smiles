@@ -289,7 +289,7 @@ function Index() {
       </section>
 
       {/* Équipe */}
-      <section id="equipe" className="gradient-peach">
+      <section id="equipe" className="overflow-hidden gradient-peach">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-24 lg:grid-cols-2">
           <div className="relative order-2 lg:order-1">
             <img
@@ -300,7 +300,7 @@ function Index() {
               loading="lazy"
               className="rounded-3xl shadow-peach"
             />
-            <div className="absolute -right-4 top-8 rounded-2xl bg-card p-4 shadow-soft md:-right-8">
+            <div className="absolute -right-4 top-8 rounded-2xl bg-card p-4 shadow-soft lg:-right-8">
               <p className="font-heading text-2xl font-bold text-primary">15+</p>
               <p className="text-xs font-semibold text-muted-foreground">
                 années d'expérience
