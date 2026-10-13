@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   CalendarCheck,
   Clock,
   HeartPulse,
   MapPin,
+  Menu,
   Phone,
   ShieldCheck,
   Smile,
@@ -12,6 +14,7 @@ import {
   Stethoscope,
   Baby,
   Wand2,
+  X,
 } from "lucide-react";
 
 import heroImage from "@/assets/hero-dentist.jpg";
@@ -38,6 +41,13 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
+
+const navLinks = [
+  { href: "#services", label: "Soins" },
+  { href: "#equipe", label: "L'équipe" },
+  { href: "#avis", label: "Avis" },
+  { href: "#contact", label: "Contact" },
+];
 
 const services = [
   {
@@ -100,40 +110,73 @@ const testimonials = [
 ];
 
 function Index() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <a href="#" className="flex items-center gap-2">
-            <span className="flex size-10 items-center justify-center rounded-full bg-primary text-primary-foreground">
+      <header className="sticky top-0 z-50 border-b border-border/60 bg-background/95 backdrop-blur-md">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3 sm:gap-3 sm:px-6 sm:py-4">
+          <a href="#" className="flex shrink-0 items-center gap-2">
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
               <Smile className="size-5" />
             </span>
-            <span className="font-heading text-xl font-semibold">
+            <span className="font-heading text-lg font-semibold whitespace-nowrap md:text-xl">
               Sourire <span className="text-primary">&amp;</span> Cie
             </span>
           </a>
           <nav className="hidden items-center gap-8 text-sm font-semibold text-muted-foreground md:flex">
-            <a href="#services" className="transition-colors hover:text-primary">
-              Soins
-            </a>
-            <a href="#equipe" className="transition-colors hover:text-primary">
-              L'équipe
-            </a>
-            <a href="#avis" className="transition-colors hover:text-primary">
-              Avis
-            </a>
-            <a href="#contact" className="transition-colors hover:text-primary">
-              Contact
-            </a>
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="transition-colors hover:text-primary"
+              >
+                {link.label}
+              </a>
+            ))}
           </nav>
-          <a
-            href="#contact"
-            className="rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-soft transition-transform hover:scale-105"
-          >
-            Prendre rendez-vous
-          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href="#contact"
+              aria-label="Prendre rendez-vous"
+              className="flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-primary px-3 py-2 text-sm font-bold text-primary-foreground shadow-soft transition-transform hover:scale-105 sm:px-4 md:px-5 md:py-2.5"
+            >
+              <CalendarCheck className="size-4 sm:hidden" />
+              <span className="hidden sm:inline">Prendre rendez-vous</span>
+            </a>
+            <button
+              type="button"
+              aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="flex size-10 shrink-0 items-center justify-center rounded-full border border-border bg-card text-primary transition-colors hover:border-primary md:hidden"
+            >
+              {menuOpen ? (
+                <X className="size-5" />
+              ) : (
+                <Menu className="size-5" />
+              )}
+            </button>
+          </div>
         </div>
+        {menuOpen && (
+          <nav className="border-t border-border/60 bg-background px-6 py-3 md:hidden">
+            <ul className="flex flex-col">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="block rounded-xl px-3 py-3 font-semibold transition-colors hover:bg-secondary hover:text-primary"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
       </header>
 
       {/* Hero */}
@@ -188,7 +231,7 @@ function Index() {
               height={912}
               className="relative rounded-3xl shadow-soft"
             />
-            <div className="absolute -bottom-6 -right-4 rounded-2xl bg-card p-4 shadow-peach md:-right-8">
+            <div className="absolute -bottom-6 -right-4 rounded-2xl bg-card p-4 shadow-peach lg:-right-8">
               <div className="flex items-center gap-3">
                 <span className="flex size-11 items-center justify-center rounded-full bg-accent text-accent-foreground">
                   <Clock className="size-5" />
@@ -246,7 +289,7 @@ function Index() {
       </section>
 
       {/* Équipe */}
-      <section id="equipe" className="gradient-peach">
+      <section id="equipe" className="overflow-hidden gradient-peach">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-24 lg:grid-cols-2">
           <div className="relative order-2 lg:order-1">
             <img
@@ -257,7 +300,7 @@ function Index() {
               loading="lazy"
               className="rounded-3xl shadow-peach"
             />
-            <div className="absolute -right-4 top-8 rounded-2xl bg-card p-4 shadow-soft md:-right-8">
+            <div className="absolute -right-4 top-8 rounded-2xl bg-card p-4 shadow-soft lg:-right-8">
               <p className="font-heading text-2xl font-bold text-primary">15+</p>
               <p className="text-xs font-semibold text-muted-foreground">
                 années d'expérience
