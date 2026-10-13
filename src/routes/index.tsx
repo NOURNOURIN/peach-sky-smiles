@@ -231,7 +231,7 @@ function Index() {
               height={912}
               className="relative rounded-3xl shadow-soft"
             />
-            <div className="absolute -bottom-6 -right-4 rounded-2xl bg-card p-4 shadow-peach md:-right-8">
+            <div className="absolute -bottom-6 -right-4 rounded-2xl bg-card p-4 shadow-peach lg:-right-8">
               <div className="flex items-center gap-3">
                 <span className="flex size-11 items-center justify-center rounded-full bg-accent text-accent-foreground">
                   <Clock className="size-5" />
