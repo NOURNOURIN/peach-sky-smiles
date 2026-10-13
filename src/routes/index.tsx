@@ -139,9 +139,10 @@ function Index() {
           <div className="flex items-center gap-2">
             <a
               href="#contact"
-              className="whitespace-nowrap rounded-full bg-primary px-3 py-2 text-sm font-bold text-primary-foreground shadow-soft transition-transform hover:scale-105 sm:px-4 md:px-5 md:py-2.5"
+              aria-label="Prendre rendez-vous"
+              className="flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-primary px-3 py-2 text-sm font-bold text-primary-foreground shadow-soft transition-transform hover:scale-105 sm:px-4 md:px-5 md:py-2.5"
             >
-              <span className="sm:hidden">Rendez-vous</span>
+              <CalendarCheck className="size-4 sm:hidden" />
               <span className="hidden sm:inline">Prendre rendez-vous</span>
             </a>
             <button
