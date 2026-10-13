@@ -1,11 +1,9 @@
-import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   CalendarCheck,
   Clock,
   HeartPulse,
   MapPin,
-  Menu,
   Phone,
   ShieldCheck,
   Smile,
@@ -14,7 +12,6 @@ import {
   Stethoscope,
   Baby,
   Wand2,
-  X,
 } from "lucide-react";
 
 import heroImage from "@/assets/hero-dentist.jpg";
