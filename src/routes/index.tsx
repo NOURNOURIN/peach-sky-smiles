@@ -116,12 +116,12 @@ function Index() {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-border/60 bg-background/95 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-6 py-4">
-          <a href="#" className="flex items-center gap-2">
-            <span className="flex size-10 items-center justify-center rounded-full bg-primary text-primary-foreground">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3 sm:gap-3 sm:px-6 sm:py-4">
+          <a href="#" className="flex shrink-0 items-center gap-2">
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
               <Smile className="size-5" />
             </span>
-            <span className="font-heading text-xl font-semibold">
+            <span className="font-heading text-lg font-semibold whitespace-nowrap md:text-xl">
               Sourire <span className="text-primary">&amp;</span> Cie
             </span>
           </a>
@@ -139,9 +139,10 @@ function Index() {
           <div className="flex items-center gap-2">
             <a
               href="#contact"
-              className="whitespace-nowrap rounded-full bg-primary px-4 py-2 text-sm font-bold text-primary-foreground shadow-soft transition-transform hover:scale-105 md:px-5 md:py-2.5"
+              className="whitespace-nowrap rounded-full bg-primary px-3 py-2 text-sm font-bold text-primary-foreground shadow-soft transition-transform hover:scale-105 sm:px-4 md:px-5 md:py-2.5"
             >
-              Prendre rendez-vous
+              <span className="sm:hidden">Rendez-vous</span>
+              <span className="hidden sm:inline">Prendre rendez-vous</span>
             </a>
             <button
               type="button"
