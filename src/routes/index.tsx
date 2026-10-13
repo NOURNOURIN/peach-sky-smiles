@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   CalendarCheck,
   Clock,
   HeartPulse,
   MapPin,
+  Menu,
   Phone,
   ShieldCheck,
   Smile,
@@ -12,6 +14,7 @@ import {
   Stethoscope,
   Baby,
   Wand2,
+  X,
 } from "lucide-react";
 
 import heroImage from "@/assets/hero-dentist.jpg";
@@ -38,6 +41,13 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
+
+const navLinks = [
+  { href: "#services", label: "Soins" },
+  { href: "#equipe", label: "L'équipe" },
+  { href: "#avis", label: "Avis" },
+  { href: "#contact", label: "Contact" },
+];
 
 const services = [
   {
@@ -100,11 +110,13 @@ const testimonials = [
 ];
 
 function Index() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <header className="sticky top-0 z-50 border-b border-border/60 bg-background/95 backdrop-blur-md">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-6 py-4">
           <a href="#" className="flex items-center gap-2">
             <span className="flex size-10 items-center justify-center rounded-full bg-primary text-primary-foreground">
               <Smile className="size-5" />
@@ -114,26 +126,55 @@ function Index() {
             </span>
           </a>
           <nav className="hidden items-center gap-8 text-sm font-semibold text-muted-foreground md:flex">
-            <a href="#services" className="transition-colors hover:text-primary">
-              Soins
-            </a>
-            <a href="#equipe" className="transition-colors hover:text-primary">
-              L'équipe
-            </a>
-            <a href="#avis" className="transition-colors hover:text-primary">
-              Avis
-            </a>
-            <a href="#contact" className="transition-colors hover:text-primary">
-              Contact
-            </a>
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="transition-colors hover:text-primary"
+              >
+                {link.label}
+              </a>
+            ))}
           </nav>
-          <a
-            href="#contact"
-            className="rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-soft transition-transform hover:scale-105"
-          >
-            Prendre rendez-vous
-          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href="#contact"
+              className="whitespace-nowrap rounded-full bg-primary px-4 py-2 text-sm font-bold text-primary-foreground shadow-soft transition-transform hover:scale-105 md:px-5 md:py-2.5"
+            >
+              Prendre rendez-vous
+            </a>
+            <button
+              type="button"
+              aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="flex size-10 shrink-0 items-center justify-center rounded-full border border-border bg-card text-primary transition-colors hover:border-primary md:hidden"
+            >
+              {menuOpen ? (
+                <X className="size-5" />
+              ) : (
+                <Menu className="size-5" />
+              )}
+            </button>
+          </div>
         </div>
+        {menuOpen && (
+          <nav className="border-t border-border/60 bg-background px-6 py-3 md:hidden">
+            <ul className="flex flex-col">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="block rounded-xl px-3 py-3 font-semibold transition-colors hover:bg-secondary hover:text-primary"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
       </header>
 
       {/* Hero */}
