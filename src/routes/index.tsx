@@ -145,38 +145,25 @@ function Index() {
               <CalendarCheck className="size-4 sm:hidden" />
               <span className="hidden sm:inline">Prendre rendez-vous</span>
             </a>
-            <button
-              type="button"
-              aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
-              aria-expanded={menuOpen}
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="flex size-10 shrink-0 items-center justify-center rounded-full border border-border bg-card text-primary transition-colors hover:border-primary md:hidden"
-            >
-              {menuOpen ? (
-                <X className="size-5" />
-              ) : (
-                <Menu className="size-5" />
-              )}
-            </button>
           </div>
         </div>
-        {menuOpen && (
-          <nav className="border-t border-border/60 bg-background px-6 py-3 md:hidden">
-            <ul className="flex flex-col">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="block rounded-xl px-3 py-3 font-semibold transition-colors hover:bg-secondary hover:text-primary"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        )}
+        <nav
+          aria-label="Menu"
+          className="border-t border-border/60 bg-background px-3 py-2 md:hidden"
+        >
+          <ul className="grid grid-cols-4 gap-1.5">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className="block whitespace-nowrap rounded-full bg-secondary px-2 py-2 text-center text-sm font-bold text-secondary-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </header>
 
       {/* Hero */}
